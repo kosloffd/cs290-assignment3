@@ -12,8 +12,11 @@
 * @return {null} - 'useless'.
 */
 
-//your code here
-
+//your code here  2:05pm -7:20pm, 9:10pm- 4/18/15
+function uselessFunction()
+{
+	return null;
+}
 //end your code
 
 var bar = 'not a function';
@@ -30,7 +33,16 @@ var barType = typeof bar;
 */
 
 //your code here
-
+bar = function(doubleArray) 
+			{
+				passed = new Boolean(true);
+				
+				for(var i = 0; i < doubleArray.length; i++)
+				{
+					typeof doubleArray[i] === 'number' ? doubleArray[i]*=2: passed = false;
+				}
+				return passed;
+			}
 //end your code
 
 /**
@@ -66,5 +78,29 @@ function GitLog(hash, date, message) {
 */
 
 //your code here
+function parseGit(logArray)
+{
+	//create a GitLog array
+	var gitLogArray = [];
+	//create vars for hash, date, message
+	var hash;
+	var date;
+	var message;
+	/*Iterate through logArray and find and assign hash, date, and message*/
+	for (var i = 0; i < logArray.length; i++)
+	{
+		hash = /([0-9,a-f]{7})\b/.exec(logArray[i]);
+		date =  /(\w+,.*\d{4})/.exec(logArray[i]);
+		message = /\"(.*)"/.exec(logArray[i]);
 
+		//Assign the values from the first in the returned arrays to a new GitLog object
+		gitLogObject = new GitLog(hash[0], date[0], message[0]);
+
+		//push it onto the gitLogArray
+		gitLogArray.push(gitLogObject);
+	}
+
+	return gitLogArray;
+
+}
 //end your code
